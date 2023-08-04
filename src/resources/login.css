@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600|Work+Sans:400,500,600,700&display=swap');
+
+.authentication {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* background-image: url('./img1.jpg'); */
+    background-size: 100%, 100%;
+    /* background: black; */
+    /* background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%); */
+    font-family: "work sans";
+
+}
+
+.authentication .ant-row {
+    width: 100%;
+    justify-content: center;
+}
+
+.authentication form {
+    /* background-color: black; */
+    padding: 20px;
+    width: 30%;
+    /* border-radius: 25px; */
+    /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15); */
+}
+
+.authentication button {
+    border-radius: 25px;
+    width: 60%;
+    height: 40px;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 700;
+    background: #d27842 !important;
+    border: 0px;
+    cursor: pointer;
+    transition: opacity 0.25s ease-out;
+    padding: auto;
+    /* padding-bottom: 1.5rem; */
+}
+
+.authentication button:hover {
+    opacity: 0.8;
+}
+
+.authentication .ant-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+    box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
+    transition: box-shadow 0.2s ease-in;
+}
+
+.authentication .ant-input-password {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+    box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
+    transition: box-shadow 0.2s ease-in;
+}
+
+.authentication .ant-input:focus {
+    box-shadow: inset 0px -3px 0px 0px rgba(210, 120, 66, 1);
+    outline: none;
+}
+
+.authentication input:focus+span {
+    /* Apply your styles here */
+    box-shadow: inset 0px -3px 0px 0px rgba(210, 120, 66, 1);
+}
+
+
+.authentication .ant-input-password:focus {
+    box-shadow: inset 0px -3px 0px 0px rgba(210, 120, 66, 1);
+    outline: none;
+}
+
+.authentication label {
+
+    /* align-self: start;
+    padding-left: 3.5rem;
+    padding-bottom: 0.5rem; */
+    padding-left: 1rem;
+    color: rgba(187, 187, 187, 0.9) !important;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    margin-bottom: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    letter-spacing: 0.1rem;
+    text-transform: capitalize;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+}

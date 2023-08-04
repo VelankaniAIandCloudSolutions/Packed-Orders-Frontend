@@ -1,0 +1,159 @@
+.menu-selection-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.menu-selection-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-selection-left h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.menu-selection-left img {
+  width: 100%;
+  max-width: 300px;
+  object-fit: cover;
+}
+
+.menu-selection-right {
+  width: 60%;
+}
+
+/* .menu-selection-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.menu-selection-item-details {
+  width: 70%;
+}
+
+.menu-selection-item-details h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.menu-selection-item-details p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.menu-selection-item-price {
+  font-size: 18px;
+} */
+
+/* .ant-btn {
+  background-color: #c59d5f;
+  border-radius: 5px !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ant-btn:hover {
+  background-color: #d27842 !important;
+} */
+
+h2 {
+  color: #c59d5f;
+}
+
+.menu-selection-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.add-to-cart-button {
+  display: flex;
+  float: right;
+  background-color: #c59d5f !important;
+
+}
+
+.cart-button {
+  border-radius: 15px;
+  background-color: #c59d5f !important;
+
+}
+
+.left-checkboxes {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.right-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  flex: 1;
+}
+
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.checkbox-container h4 {
+  margin: 0;
+}
+
+.left-checkboxes h4 {
+  margin-bottom: 5px;
+}
+
+.left-checkboxes .ant-checkbox-wrapper {
+  margin-bottom: 10px;
+}
+
+.right-checkboxes h4 {
+  margin-bottom: 5px;
+}
+
+.right-checkboxes .ant-checkbox-wrapper {
+  margin-bottom: 10px;
+}
+
+.checkboxhead {
+  margin-bottom: 1.5rem !important;
+}
+
+.menuselection button {
+  border-radius: 25px;
+  width: 15%;
+  height: 40px;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  border: 0px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+  padding: auto;
+  /* padding-bottom: 1.5rem; */
+}
+
+.menuselection button:hover {
+  opacity: 0.8;
+}

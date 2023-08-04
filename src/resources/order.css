@@ -1,0 +1,32 @@
+/* .form-cls {
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+
+} */
+.orderForm form {
+    /* background-color: white; */
+    padding: 2rem;
+    /* width: 100%; */
+    /* border-radius: 25px; */
+}
+
+.orderForm button {
+    border-radius: 25px;
+    /* width: 60%; */
+    height: 40px;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 700;
+    background: #c59d5f !important;
+    /* background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%); */
+    border: 0px;
+    cursor: pointer;
+    transition: opacity 0.25s ease-out;
+    padding: auto;
+    /* padding-bottom: 1.5rem; */
+}
+
+.orderForm button:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,39 @@
+/* .checkin {
+    background-color: #27cda5 !important;
+    color: #FFF;
+    border-radius: 13px;
+    height: 30px;
+    width: 110px;
+    padding: 0 8px;
+    float: right !important;
+    border: 0px;
+} */
+
+.customer-button {
+    border-radius: 25px !important;
+    height: 40px;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 700;
+    /* background: rgb(34, 193, 195);
+    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%); */
+    border: 0px;
+    cursor: pointer;
+    transition: opacity 0.25s ease-out;
+    padding: auto;
+    float: right !important;
+}
+
+.customer-button:hover {
+    opacity: 0.8;
+}
+
+.hclass {
+    display: inline !important;
+    margin-left: 0px;
+}
+
+.test {
+    margin-bottom: 2%;
+    margin-top: 1rem;
+}

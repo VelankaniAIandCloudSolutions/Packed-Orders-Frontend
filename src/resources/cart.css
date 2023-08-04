@@ -1,0 +1,11 @@
+.order_btn {
+    display: flex;
+    float: right;
+    background-color: #c59d5f !important;
+}
+
+.back_btn {
+    display: flex;
+    float: left;
+    background-color: #c59d5f !important;
+}
