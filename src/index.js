@@ -12,7 +12,7 @@ const finalReducer = combineReducers({
   rootReducer: rootReducer
 });
 
-axios.defaults.baseURL = 'http://13.126.209.231:5000';
+axios.defaults.baseURL = '';
 const initialState = {
   rootReducer: {
     cartItems: localStorage.getItem('cartItems')
