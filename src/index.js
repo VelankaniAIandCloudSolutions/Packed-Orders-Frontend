@@ -6,13 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { rootReducer } from './redux/rootReducer';
-import axios from 'axios';
+
 
 const finalReducer = combineReducers({
   rootReducer: rootReducer
 });
-
-axios.defaults.baseURL = 'http://13.126.209.231:5000'
 
 const initialState = {
   rootReducer: {

@@ -170,6 +170,7 @@ function Order() {
         values.quantity = orderdetails.quantity;
         values.unitPrice = orderdetails.unitPrice;
         values.totalPrice = orderdetails.totalPrice;
+        values.status = "Open";
         // values.name = user._id;
         console.log("Final values==", values);
 
@@ -642,8 +643,8 @@ function Order() {
                                         wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                     >
                                         <DatePicker
-                                            showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                                            format="YYYY-MM-DD HH:mm:ss"
+                                            showTime={{ defaultValue: moment("00:00", "HH:mm") }}
+                                            format="YYYY-MM-DD HH:mm"
                                             defaultValue={defaultDateTime}
                                             style={{ width: "100%" }}
                                             disabledDate={(current) => current && current < moment().startOf('day')}
@@ -665,7 +666,7 @@ function Order() {
                                     >
                                         <DatePicker
                                             showTime={{ defaultValue: moment().add(2, 'hours').startOf('hour') }}
-                                            format="YYYY-MM-DD HH:mm:ss"
+                                            format="YYYY-MM-DD HH:mm"
                                             // defaultValue={defaultDateTime}
                                             style={{ width: "100%" }}
                                             disabledDate={(current) =>

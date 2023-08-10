@@ -19,6 +19,7 @@ function AllOrders() {
 
     const appdata = JSON.parse(localStorage.getItem('app-user'));
     console.log(appdata);
+    const role = appdata.role;
     // const dispatch = useDispatch()
     const getAllOrders = () => {
         // dispatch({ type: 'showLoading' })
@@ -77,6 +78,11 @@ function AllOrders() {
             key: 'name',
         },
         {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+        },
+        {
             title: 'Order Type',
             dataIndex: 'orderType',
             key: 'orderType',
@@ -130,6 +136,16 @@ function AllOrders() {
         //         </Button>
         //     ),
         // },
+        {
+            title: 'Close',
+            dataIndex: '_id',
+            key: 'close',
+            render: () => (
+                <Button type="primary" >
+                    Close
+                </Button>
+            ),
+        },
         {
             title: 'Actions',
             dataIndex: '_id',
