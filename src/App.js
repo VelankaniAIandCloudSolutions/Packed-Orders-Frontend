@@ -10,7 +10,9 @@ import AllOrders from './pages/AllOrders';
 import EditOrder from './pages/EditOrder';
 import CartPage from './pages/CartPage';
 import LoginTest from './pages/LoginTest';
-
+import DayWiseSaleRport from './pages/DayWiseSaleRport';
+import ItemSaleReport from './pages/ItemSaleReport';
+import CompanySaleReport from './pages/CompanySaleReport';
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
           <Route path='/editOrder/:id' element={<EditOrder />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/logintest' element={<LoginTest />} />
+          <Route path='/dayreport' element={<DayWiseSaleRport />} />
+          <Route path='/itemreport' element={<ItemSaleReport />} />
+          <Route path='/companyreport' element={<CompanySaleReport />} />
         </Routes>
       </BrowserRouter>
     </div>

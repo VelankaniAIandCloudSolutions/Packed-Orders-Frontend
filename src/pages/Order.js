@@ -25,6 +25,7 @@ function Order() {
     const dispatch = useDispatch();
     const [showComments, setShowComments] = useState(false);
     const [showDeliveryAddress, setDeliveryAddress] = useState(false);
+    const [deliveryNote, setDeliveryNote] = useState('');
     const orderdetails = Array.isArray(location.state) ? location.state : [location.state];
     console.log(orderdetails);
     const orderdata = orderdetails.filter(order => order && order.orderdetails && order.orderdetails.length > 0);
@@ -460,7 +461,12 @@ function Order() {
                     layout: 'lightHorizontalLines',
                     style: 'table',
                 },
-
+                {
+                    text: 'Please Note: Delivery Charges will be additional. Final bill will include Delivery Fees',
+                    // fontSize: 16,
+                    bold: true,
+                    margin: [0, 20, 0, 10],
+                },
                 {
                     text: 'Notes',
                     // fontSize: 16,
@@ -536,6 +542,10 @@ function Order() {
         setOrderType(value); // Update the orderType state
         if (value === 'Take Away') {
             form.setFieldsValue({ deliveryAddress: undefined });
+            setDeliveryNote('');
+        }
+        else if (value === 'Delivery') {
+            setDeliveryNote('Please Note: Delivery Charges will be additional. Final bill will include Delivery Fees');
         }
     };
 
@@ -776,6 +786,7 @@ function Order() {
                                     </Form.Item>
                                 </Col>
                             </Row>
+
                             <Row justify="space-between" gutter={[30, 8]}>
                                 <Col span={8}>
                                     <Form.Item
@@ -807,7 +818,7 @@ function Order() {
                             <Row justify="space-between" gutter={[30, 8]}>
                                 <Col span={8}>
                                     <Form.Item
-                                        label="Grand Total"
+                                        label="Estimated Total"
                                         name="GrandTotal"
                                         labelCol={{ span: 8 }}
                                         wrapperCol={{ span: 16 }}
@@ -816,7 +827,13 @@ function Order() {
                                     </Form.Item>
                                 </Col>
                             </Row>
+                            <Row justify="space-between" gutter={[30, 8]}>
 
+
+                                <p class="deliveryNote"><span>{deliveryNote}</span></p>
+
+
+                            </Row>
                             <div className="menuselection">
                                 <Button htmlType="submit" type="primary">
                                     Place Order

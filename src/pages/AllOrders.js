@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Col, Row, Table, Button, Form, message, Input, Select, Modal, DatePicker, Space, } from 'antd';
 import {
     DeleteOutlined,
-    EditOutlined, MinusCircleOutlined, PlusOutlined
+    EditOutlined, MinusCircleOutlined, PlusOutlined, StopOutlined
 } from "@ant-design/icons"
 import '../resources/customer.css'
 import DefaultLayout from '../components/DefaultLayout';
@@ -16,7 +16,6 @@ function AllOrders() {
     const [ordersData, setOrdersData] = useState([]);
     const [addEditModalVisibility, setAddEditModalVisibility] = useState(false)
     const [editingOrder, setEditingOrder] = useState(null)
-
     const appdata = JSON.parse(localStorage.getItem('app-user'));
     console.log(appdata);
     const role = appdata.role;
@@ -56,6 +55,35 @@ function AllOrders() {
                 console.log(error)
             })
     }
+    const closeOrder = (record) => {
+        axios.post('/api/order/edit-order', {
+            orderID: record._id,
+            status: 'Closed' // Update the status to 'Closed'
+        })
+            .then((response) => {
+                message.success('Order Closed Successfully');
+                getAllOrders();
+            })
+            .catch((error) => {
+                message.error('Something went wrong');
+                console.log(error);
+            });
+    };
+    const cancelOrder = (record) => {
+        axios.post('/api/order/edit-order', {
+            orderID: record._id,
+            status: 'Cancelled' // Update the status to 'Closed'
+        })
+            .then((response) => {
+                message.success('Order Cancelled Successfully');
+                getAllOrders();
+            })
+            .catch((error) => {
+                message.error('Something went wrong');
+                console.log(error);
+            });
+    };
+
     const navigate = useNavigate();
     const handleEditOrder = (record) => {
         // Navigate to the orders page with the order data
@@ -140,8 +168,8 @@ function AllOrders() {
             title: 'Close',
             dataIndex: '_id',
             key: 'close',
-            render: () => (
-                <Button type="primary" >
+            render: (id, record) => (
+                <Button type="primary" onClick={() => closeOrder(record)} disabled={record.status !== 'Open'} >
                     Close
                 </Button>
             ),
@@ -155,11 +183,20 @@ function AllOrders() {
                         className='mx-2'
                         onClick={() => handleEditOrder(record)}
                     />
+
+
                     <span> </span>
                     <DeleteOutlined
                         className="mx-2"
                         onClick={() => deleteOrder(record)}
                     />
+                    <span> </span>
+                    {record.status === 'Open' && (
+                        <StopOutlined
+                            className="mx-2"
+                            onClick={() => cancelOrder(record)}
+                        />
+                    )}
                 </div>
             ),
         },

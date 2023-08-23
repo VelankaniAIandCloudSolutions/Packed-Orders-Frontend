@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DefaultLayout from '../components/DefaultLayout';
-import { Col, Row, Table, Button, Form, message, Input, Select, Modal, DatePicker, Space } from 'antd';
+import { Col, Row, Table, Button, Form, message, Input, Select, Modal, DatePicker, Space, InputNumber } from 'antd';
 import '../resources/order.css';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -81,6 +81,10 @@ function EditOrder() {
                 address: ordersData.address || '',
                 deliveryAddress: ordersData.deliveryAddress || '',
                 comments: ordersData.comments || '',
+                Subtotal: ordersData.Subtotal,
+                Taxamount: ordersData.Taxamount,
+                GrandTotal: ordersData.GrandTotal,
+                TaxRate: '18'
             };
             form.setFieldsValue(initialValues);
         }
@@ -419,14 +423,14 @@ function EditOrder() {
             <main><section className='menu sections'>
                 <div className='title '>
                     <h2>Order Details</h2>
-                    <Button
+                    {/* <Button
                         type="primary"
                         className="pdfButton"
                         onClick={handleGeneratePDF}
                         style={{ align: 'right' }}
                     >
                         Generate PDF
-                    </Button>
+                    </Button> */}
                 </div>
                 <div className='orderForm'>
                     {/* <Button
@@ -451,9 +455,10 @@ function EditOrder() {
                                         },
                                     ]}
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
-                                    wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
+                                    wrapperCol={{ span: 16 }}
+                                // Set the input field width to 16 columns
                                 >
-                                    <Input />
+                                    <Input disabled />
                                 </Form.Item>
                             </Col>
                             <Col span={8}>
@@ -469,7 +474,7 @@ function EditOrder() {
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                 >
-                                    <Input />
+                                    <Input disabled />
                                 </Form.Item>
                             </Col>
                             <Col span={8}>
@@ -485,7 +490,7 @@ function EditOrder() {
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                 >
-                                    <Input />
+                                    <Input disabled />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -507,6 +512,7 @@ function EditOrder() {
                                         defaultValue="Take Away"
                                         style={{ textAlign: "left" }}
                                         dropdownStyle={{ textAlign: "left" }}
+                                        disabled
                                     >
                                         <Option value="Take Away">Take Away</Option>
                                         <Option value="Delivery">Delivery</Option>
@@ -527,11 +533,11 @@ function EditOrder() {
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                 >
                                     <DatePicker
-                                        showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                                        format="YYYY-MM-DD HH:mm:ss"
+                                        showTime={{ defaultValue: moment("00:00", "HH:mm") }}
+                                        format="YYYY-MM-DD HH:mm"
 
                                         style={{ width: "100%" }}
-
+                                        disabled
                                     />
                                 </Form.Item>
                             </Col>
@@ -547,12 +553,14 @@ function EditOrder() {
                                     ]}
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
+
                                 >
                                     <DatePicker
-                                        showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                                        format="YYYY-MM-DD HH:mm:ss"
+                                        showTime={{ defaultValue: moment("00:00", "HH:mm") }}
+                                        format="YYYY-MM-DD HH:mm"
 
                                         style={{ width: "100%" }}
+                                        disabled
                                     />
                                 </Form.Item>
                             </Col>
@@ -566,13 +574,13 @@ function EditOrder() {
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                 >
-                                    <Input />
+                                    <Input disabled />
                                 </Form.Item>
                                 <Form.Item label="Dietary Restrictions" name="dietaryRestrictions"
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                 >
-                                    <Select style={{ textAlign: "left" }} >
+                                    <Select style={{ textAlign: "left" }} disabled >
                                         <Option value="yes">Yes</Option>
                                         <Option value="no">No</Option>
                                     </Select>
@@ -586,38 +594,95 @@ function EditOrder() {
                                     labelCol={{ span: 8 }} // Set the label width to 8 columns
                                     wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                 >
-                                    <Input.TextArea rows={4} />
+                                    <Input.TextArea rows={4} disabled />
                                 </Form.Item>
                             </Col>
                             <Col span={8}>
-                                <Form.Item
-                                    label="Delivery Address"
-                                    name="deliveryAddress"
-                                    rules={[{ message: "Please input Delivery Address!", },]}
-                                    labelCol={{ span: 8 }} // Set the label width to 8 columns
-                                    wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
-                                >
-                                    <Input.TextArea rows={4} />
-                                </Form.Item>
+                                {ordersData && ordersData.deliveryAddress && (
+                                    <Form.Item
+                                        label="Delivery Address"
+                                        name="deliveryAddress"
+                                        rules={[{ message: "Please input Delivery Address!", },]}
+                                        labelCol={{ span: 8 }} // Set the label width to 8 columns
+                                        wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
+                                    >
+                                        <Input.TextArea rows={4} disabled />
+                                    </Form.Item>
+                                )}
                             </Col>
                         </Row>
                         <Row justify="space-between" gutter={[30, 8]}>
 
                             <Col span={8}>
-                                <Form.Item
-                                    label="Comments"
-                                    name="comments"
-                                    labelCol={{ span: 8 }} // Set the label width to 8 columns
-                                    wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
-                                >
-                                    <Input.TextArea rows={4} />
-                                </Form.Item>
+                                {ordersData && ordersData.comments && (
+                                    <Form.Item
+                                        label="Comments"
+                                        name="comments"
+                                        labelCol={{ span: 8 }} // Set the label width to 8 columns
+                                        wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
+                                    >
+                                        <Input.TextArea rows={4} disabled />
+                                    </Form.Item>
+                                )}
                             </Col>
 
                         </Row>
                         {dataSource.length > 0 && (
                             <Table columns={columns} dataSource={dataSource} />
                         )}
+                        <Row justify="space-between" gutter={[30, 8]}>
+                            <Col span={8}>
+                                <Form.Item
+                                    label="Sub Total"
+                                    name="Subtotal"
+                                    labelCol={{ span: 8 }}
+                                    wrapperCol={{ span: 16 }}
+                                >
+                                    <InputNumber min={0} disabled style={{ width: '100%' }} />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+
+                        <Row justify="space-between" gutter={[30, 8]}>
+                            <Col span={8}>
+                                <Form.Item
+                                    label="Tax Rate (%)"
+                                    name="TaxRate"
+                                    labelCol={{ span: 8 }}
+                                    wrapperCol={{ span: 16 }}
+                                >
+                                    <InputNumber
+                                        min={0}
+                                        max={100}
+
+                                        disabled style={{ width: '100%' }} />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row justify="space-between" gutter={[30, 8]}>
+                            <Col span={8}>
+                                <Form.Item
+                                    label="Tax Amount"
+                                    name="Taxamount"
+                                    labelCol={{ span: 8 }}
+                                    wrapperCol={{ span: 16 }}
+                                >
+                                    <InputNumber min={0} disabled style={{ width: '100%' }} />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row justify="space-between" gutter={[30, 8]}>
+                            <Col span={8}>
+                                <Form.Item
+                                    label="Estimated Total"
+                                    name="GrandTotal"
+                                    labelCol={{ span: 8 }}
+                                    wrapperCol={{ span: 16 }}
+                                >
+                                    <InputNumber min={0} disabled style={{ width: '100%' }} />
+                                </Form.Item>
+                            </Col>
+                        </Row>
                         <div className="menuselection">
                             <Button htmlType="submit" type="primary">
                                 Submit

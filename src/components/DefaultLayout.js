@@ -5,7 +5,8 @@ import {
     HomeOutlined,
     UnorderedListOutlined,
     LogoutOutlined,
-    ShoppingCartOutlined
+    ShoppingCartOutlined,
+    FileOutlined,
 } from '@ant-design/icons';
 import '../resources/layout.css'
 import { Layout, Menu } from 'antd';
@@ -68,6 +69,17 @@ const DefaultLayout = (props) => {
                             <Link to='/cart'>Carts</Link>
                         </Menu.Item>
                     )}
+                    <Menu.SubMenu key="reports" icon={<FileOutlined />} title="Reports">
+                        <Menu.Item key="/dayreport">
+                            <Link to='/dayreport'>Day Wise Sale Report</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/itemreport">
+                            <Link to='/itemreport'>Item Wise Sale Report</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/companyreport">
+                            <Link to='/companyreport'>Company Wise Sale Report</Link>
+                        </Menu.Item>
+                    </Menu.SubMenu>
                     <Menu.Item key="/logout" icon={<LogoutOutlined />} onClick={() => {
                         localStorage.removeItem('app-user')
                         navigate('/login')

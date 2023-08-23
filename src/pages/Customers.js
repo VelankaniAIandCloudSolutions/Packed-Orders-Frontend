@@ -64,7 +64,31 @@ function Customers() {
                 console.log(error)
             })
     }
+    const deactivateCustomer = (record) => {
+        const custID = record._id;
+        const userEmail = record.email;
+        console.log(`Email check=======${userEmail}`);
+        axios.post('/api/customers/deactivate-customer', { custID })
+            .then((response) => {
+                message.success('Customer Deactivated Successfully')
+                getAllCustomers()
 
+
+                axios.post('/api/users/deactivate-user', { userEmail }).then((response) => {
+                    // Handle the successful response
+                    console.log('User data Deactivated successfully:', response.data);
+                })
+                    .catch((error) => {
+                        // Handle errors for the users endpoint
+                        console.log('Failed to Deactivate user data:', error);
+                    });
+            })
+            .catch((error) => {
+                // dispatch({ type: 'showLoading' })
+                message.error('Something went wrong while deactivating the customer')
+                console.log(error)
+            })
+    }
     const columns = [
         {
             title: 'Customer Name',
@@ -96,6 +120,11 @@ function Customers() {
             dataIndex: 'address',
             key: 'address',
         },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+        },
         // {
         //     title: 'Invite',
         //     dataIndex: '_id',
@@ -106,6 +135,16 @@ function Customers() {
         //         </Button>
         //     ),
         // },
+        {
+            title: 'Deactivate',
+            dataIndex: '_id',
+            key: 'invite',
+            render: (id, record) => (
+                <Button type="primary" onClick={() => deactivateCustomer(record)}>
+                    Deactivate
+                </Button>
+            ),
+        },
         {
             title: "Actions",
             dataIndex: "_id",
@@ -129,15 +168,18 @@ function Customers() {
     }, []);
 
     const onFinish = (values) => {
+
         const userValues = {
             email: values.email,
             name: values.name,
             password: "Oterra@123",
             role: values.role,
-            company: values.company
+            company: values.company,
+            status: "Active"
         };
         // dispatch({ type: "showLoading" });
         if (editingCustomer === null) {
+            values.status = "Active";
             axios.post('/api/customers/add-customer', values).then((response) => {
                 // dispatch({ type: 'hideLoading' });
                 console.log(values.email);

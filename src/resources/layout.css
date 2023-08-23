@@ -112,6 +112,25 @@
     overflow-y: scroll;
 }
 
+.ant-menu-title-content {
+    color: #c59d5f;
+    font-size: 1rem;
+}
+
+.ant-menu-submenu-arrow {
+    color: #c59d5f;
+    font-size: 1rem;
+}
+
+.anticon anticon-file {
+    color: #c59d5f;
+    font-size: 1rem;
+}
+
+.ant-menu-submenu-title {
+    color: #c59d5f;
+    font-size: 1rem;
+}
 
 /* button {
     background-color: rgb(15, 105, 15) !important;

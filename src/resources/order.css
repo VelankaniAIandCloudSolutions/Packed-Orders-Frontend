@@ -30,3 +30,8 @@
 .orderForm button:hover {
     opacity: 0.8;
 }
+
+.deliveryNote {
+    font-weight: bold;
+    color: red;
+}
