@@ -170,7 +170,7 @@ p {
 @media screen and (min-width: 768px) {
     .section-center {
         width: 95vw;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr !important;
     }
 
     .photo {
@@ -194,4 +194,27 @@ p {
 } */
 .menu-item h4 {
     color: #c59d5f;
+}
+
+@media screen and (max-width: 768px) {
+    .section-center {
+        grid-template-columns: 1fr;
+        /* Show a single column on smaller screens */
+        gap: 2rem;
+        width: 100% !important;
+        padding: 0px !important;
+        /* Adjust the gap between menu items */
+    }
+
+    .menu-item {
+        width: 90%;
+        /* Menu items take up the full width of the screen */
+    }
+
+    .photo {
+        height: 200px;
+        /* Adjust the photo height for better visibility */
+    }
+
+    /* Other adjustments for smaller screens */
 }

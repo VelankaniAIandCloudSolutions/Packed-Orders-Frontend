@@ -109,3 +109,57 @@ h4 {
     line-height: 1.25;
     margin-bottom: 0.75rem;
 }
+
+
+@media screen and (max-width: 700px) {
+
+    /* Adjust styles for screens with a maximum width of 768px */
+    .authentication form {
+        width: 80%;
+    }
+
+    .logo {
+        height: 70px !important;
+        width: 70px !important;
+        margin-bottom: auto;
+    }
+}
+
+@media screen and (min-width: 701px)and (max-width: 800px) {
+    .authentication .login-form {
+        width: 70%;
+
+    }
+
+    .logo {
+        height: 70px !important;
+        width: 70px !important;
+        margin-bottom: auto;
+    }
+}
+
+@media screen and (min-width: 801px)and (max-width: 1200px) {
+    .authentication .login-form {
+        width: 50%;
+
+    }
+
+    .logo {
+        height: 70px !important;
+        width: 70px !important;
+        margin-bottom: auto;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    .authentication .login-form {
+        width: 30%;
+
+    }
+
+    .logo {
+        height: 70px !important;
+        width: 70px !important;
+        margin-bottom: auto;
+    }
+}

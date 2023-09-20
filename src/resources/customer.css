@@ -37,3 +37,17 @@
     margin-bottom: 2%;
     margin-top: 1rem;
 }
+
+.status-open {
+    background-color: blue;
+    color: white;
+}
+
+.status-cell {
+    display: inline-block;
+    padding: 6px 12px;
+    /* Adjust padding as needed */
+    border-radius: 4px;
+    /* Optional: Add rounded corners */
+    color: white;
+}

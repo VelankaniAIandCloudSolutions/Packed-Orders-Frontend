@@ -15,6 +15,9 @@
     margin: 16px;
     background: rgba(255, 255, 255, 0.3);
 } */
+.custom-submenu {
+    background-color: transparent;
+}
 
 .site-layout .site-layout-background {
     background: #fff;
@@ -128,9 +131,33 @@
 }
 
 .ant-menu-submenu-title {
-    color: #c59d5f;
+    color: #c59d5f !important;
     font-size: 1rem;
 }
+
+.ant-menu-submenu-open {
+    background-color: #d48757;
+    /* border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
+}
+
+.ant-menu-submenu-active {
+    background-color: #d48757;
+    /* border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
+}
+
+/* .ant-menu-submenu-inline {
+    background-color: #d48757;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+} */
+
+/* .ant-menu-submenu-open {
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+} */
 
 /* button {
     background-color: rgb(15, 105, 15) !important;

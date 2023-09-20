@@ -40,7 +40,8 @@ function Login() {
 
     return (
         <div className='authentication'>
-            <Row className=''>
+            <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
+
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}
@@ -74,6 +75,7 @@ function Login() {
                         </Button>
                     </Form.Item>
                 </Form>
+
             </Row>
         </div >
     )

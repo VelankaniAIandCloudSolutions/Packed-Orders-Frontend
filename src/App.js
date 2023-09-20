@@ -13,7 +13,11 @@ import LoginTest from './pages/LoginTest';
 import DayWiseSaleRport from './pages/DayWiseSaleRport';
 import ItemSaleReport from './pages/ItemSaleReport';
 import CompanySaleReport from './pages/CompanySaleReport';
-
+import FirstMenu from './pages/FirstMenu';
+import MobileTest from './pages/MobileTest';
+import CalendarView from './pages/CalendarView';
+import PastOrders from './pages/PastOrders';
+import OpenOrders from './pages/OpenOrders';
 function App() {
   return (
     <div className="App">
@@ -33,6 +37,11 @@ function App() {
           <Route path='/dayreport' element={<DayWiseSaleRport />} />
           <Route path='/itemreport' element={<ItemSaleReport />} />
           <Route path='/companyreport' element={<CompanySaleReport />} />
+          <Route path='/firstmenu' element={<FirstMenu />} />
+          <Route path='/mobiletest' element={<MobileTest />} />
+          <Route path='/calendarview' element={<CalendarView />} />
+          <Route path='/pastorder' element={<PastOrders />} />
+          <Route path='/openorder' element={<OpenOrders />} />
         </Routes>
       </BrowserRouter>
     </div>

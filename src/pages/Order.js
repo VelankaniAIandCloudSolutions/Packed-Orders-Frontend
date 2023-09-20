@@ -151,6 +151,7 @@ function Order() {
 
     const sendPDFToServer = (pdfData, email) => {
         // console.log(`pdf data==${pdfData}`);
+        console.log("pdf");
         // Send the PDF data to the server using axios
         axios
             .post('/api/order/send-order-email', { pdfData, email })
@@ -162,30 +163,46 @@ function Order() {
             });
     }
 
-    const onFinish = (values) => {
-        console.log("On Finish values==", values);
-        console.log(typeof values)
-        values.items = orderdetails;
-        values.menu = orderdetails.menu_id;
-        values.customerId = user._id;
-        values.quantity = orderdetails.quantity;
-        values.unitPrice = orderdetails.unitPrice;
-        values.totalPrice = orderdetails.totalPrice;
-        values.status = "Open";
-        // values.name = user._id;
-        console.log("Final values==", values);
+    const onFinish = async (values) => {
+
+        await axios.get('/api/order/latest-order-no').then((response) => {
+            const latestOrderNumber = response.data;
+            values.orderNo = latestOrderNumber;
+            // Increment the order number
+            // const nextOrderNumber = latestOrderNumber + 1;
+
+            // Format the order number with leading zeros and prefix
+            // const formattedOrderNumber = `OD/${moment().year()}/${String(nextOrderNumber).padStart(4, '0')}`;
+
+            // Store the formatted order number along with the order details
+
+            // values.orderNo = "OD/SEP/0001";
+            console.log("On Finish values==", values);
+            console.log(typeof values)
+            values.items = orderdetails;
+            values.menu = orderdetails.menu_id;
+            values.customerId = user._id;
+            values.quantity = orderdetails.quantity;
+            values.unitPrice = orderdetails.unitPrice;
+            values.totalPrice = orderdetails.totalPrice;
+            values.status = "Open";
+            // values.name = user._id;
+            console.log("Final values==", values);
 
 
-        axios.post('/api/order/add-order', values).then((response) => {
-            // dispatch({ type: 'hideLoading' });
-            message.success('Order Placed Successfully')
-            dispatch({ type: 'resetState' });
-            navigate('/allorder')
+            axios.post('/api/order/add-order', values).then((response) => {
+                // dispatch({ type: 'hideLoading' });
+                message.success('Order Placed Successfully')
+                dispatch({ type: 'resetState' });
+                navigate('/allorder')
+            }).catch((error) => {
+                // dispatch({ type: 'hideLoading' });
+                message.error('Something went wrong');
+                console.log(error)
+            });
         }).catch((error) => {
-            // dispatch({ type: 'hideLoading' });
-            message.error('Something went wrong');
-            console.log(error)
-        })
+            console.error('Error fetching latest order number:', error);
+        });
 
         pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -529,6 +546,7 @@ function Order() {
 
         // pdfMake.createPdf(docDefinition).download('order_details.pdf');
         pdfMake.createPdf(docDefinition).getBase64((data) => {
+            console.log("Inside PDF line no 549");
             // Send the generated PDF data to the server
             sendPDFToServer(data, values.email);
         });
@@ -703,6 +721,7 @@ function Order() {
                                         <Input />
                                     </Form.Item>
                                     <Form.Item label="Dietary Restrictions" name="dietaryRestrictions"
+                                        rules={[{ required: true, message: "Please select the Dietary Restrictions" }]}
                                         labelCol={{ span: 8 }} // Set the label width to 8 columns
                                         wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
                                     >
@@ -768,7 +787,21 @@ function Order() {
                                             <Input.TextArea rows={4} />
                                         </Form.Item>
                                     </Col>
+
                                 )}
+                                <Col span={8}>
+                                    {orderType === "Delivery" && (
+                                        <Form.Item
+                                            label="Delivery Restrictions"
+                                            name="deliveryRestrictions"
+
+                                            labelCol={{ span: 8 }} // Set the label width to 8 columns
+                                            wrapperCol={{ span: 16 }} // Set the input field width to 16 columns
+                                        >
+                                            <Input.TextArea rows={4} />
+                                        </Form.Item>
+                                    )}
+                                </Col>
                             </Row>
                             <Table
                                 columns={columns}

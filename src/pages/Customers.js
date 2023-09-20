@@ -135,16 +135,20 @@ function Customers() {
         //         </Button>
         //     ),
         // },
-        {
-            title: 'Deactivate',
-            dataIndex: '_id',
-            key: 'invite',
-            render: (id, record) => (
-                <Button type="primary" onClick={() => deactivateCustomer(record)}>
-                    Deactivate
-                </Button>
-            ),
-        },
+        ...(role === 'admin' ? [
+            {
+                title: 'Deactivate',
+                dataIndex: '_id',
+                key: 'invite',
+                render: (id, record) => (
+                    <Button type="primary" onClick={() => deactivateCustomer(record)}>
+                        Deactivate
+                    </Button>
+                ),
+            },
+        ]
+            :
+            []),
         {
             title: "Actions",
             dataIndex: "_id",
@@ -154,8 +158,9 @@ function Customers() {
                         setEditingCustomer(record)
                         setAddEditModalVisibility(true)
                     }} /><span>  </span>
-                    <DeleteOutlined className="mx-2" onClick={() => deleteCustomer(record)} />
-
+                    {role === 'admin' && (
+                        <DeleteOutlined className="mx-2" onClick={() => deleteCustomer(record)} />
+                    )}
                 </div >
             )
         },
@@ -269,13 +274,14 @@ function Customers() {
                         <Form.Item name='address' label="Address" rules={[{ required: true }]}>
                             <Input.TextArea showCount maxLength={400} />
                         </Form.Item>
-                        <Form.Item label="Role" name="role" rules={[{ required: true, message: "Please select the Role!", }]}>
+                        <Form.Item label="Role" name="role" rules={[{ required: true, message: "Please select the Role!", }]}
+                            initialValue={editingCustomer !== null ? editingCustomer.role : (role === 'Customer Admin' ? 'Customer' : undefined)}>
                             <Select
 
                                 style={{ textAlign: "left" }}
                                 dropdownStyle={{ textAlign: "left" }}
                                 disabled={role === 'Customer Admin'} // Disable if userRole is "customer admin"
-                                defaultValue={role === 'Customer Admin' ? 'Customer' : undefined} // Set default value to "Customer" for "customer admin" role
+                            // defaultValue={role === 'Customer Admin' ? 'Customer' : undefined} // Set default value to "Customer" for "customer admin" role
 
                             >
                                 <Option value="Customer">Customer</Option>

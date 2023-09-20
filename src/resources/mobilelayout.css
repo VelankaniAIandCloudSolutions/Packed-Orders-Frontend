@@ -1,0 +1,56 @@
+/* Mobile Layout Styles */
+@media screen and (max-width: 767px) {
+
+    /* Adjust styles for screens with a maximum width of 767px */
+    .ant-layout-sider {
+        display: none;
+    }
+
+    .ant-layout-header {
+        padding: 10px;
+    }
+
+    .ant-layout-content {
+        height: calc(100vh - 100px);
+        /* Adjust the height to leave space for the header */
+        overflow-y: scroll;
+    }
+
+    .ant-menu-item-selected {
+        border-radius: 0 !important;
+    }
+
+    .ant-menu-item {
+        font-size: 0.9rem;
+    }
+
+    .logo h3 {
+        font-size: 1rem;
+    }
+
+    .anticon {
+        font-size: 1rem;
+    }
+
+    .cart-count {
+        font-size: 1rem;
+    }
+
+    .spinner-border {
+        height: 50px;
+        width: 50px;
+    }
+
+    .ant-layout-sider-children {
+        height: auto;
+        padding: 15px;
+    }
+
+    .ant-layout-has-sider {
+        padding: 0 !important;
+    }
+
+    .ant-modal-close-x {
+        font-size: 1rem;
+    }
+}

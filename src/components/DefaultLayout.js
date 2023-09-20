@@ -61,9 +61,20 @@ const DefaultLayout = (props) => {
                             <Link to='/customer'>Customers</Link>
                         </Menu.Item>
                     )}
-                    <Menu.Item key="/allorder" icon={<UnorderedListOutlined />}>
+                    {/* <Menu.Item key="/allorder" icon={<UnorderedListOutlined />}>
                         <Link to='/allorder'>Orders</Link>
-                    </Menu.Item>
+                    </Menu.Item> */}
+                    <Menu.SubMenu key="/allorder" icon={<UnorderedListOutlined />} title="Orders" className="custom-submenu">
+                        <Menu.Item key="/openorder">
+                            <Link to='/openorder'>Open Orders</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/pastorder">
+                            <Link to='/pastorder'>Past Orders</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/allorder">
+                            <Link to='/allorder'>Orders</Link>
+                        </Menu.Item>
+                    </Menu.SubMenu>
                     {(role === 'Customer' || role === 'Customer Admin') && (
                         <Menu.Item key="/cart" icon={<ShoppingCartOutlined />}>
                             <Link to='/cart'>Carts</Link>
@@ -80,11 +91,15 @@ const DefaultLayout = (props) => {
                             <Link to='/companyreport'>Company Wise Sale Report</Link>
                         </Menu.Item>
                     </Menu.SubMenu>
+                    {role === 'admin' && (
+                        <Menu.Item key="/calendarview" icon={<FileOutlined />}>
+                            <Link to='/calendarview'>Order Events</Link>
+                        </Menu.Item>
+                    )}
                     <Menu.Item key="/logout" icon={<LogoutOutlined />} onClick={() => {
                         localStorage.removeItem('app-user')
                         navigate('/login')
-                    }}>
-                        Logout
+                    }}>Logout
                     </Menu.Item>
 
                 </Menu>

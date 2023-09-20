@@ -12,7 +12,7 @@ const finalReducer = combineReducers({
   rootReducer: rootReducer
 });
 
-axios.defaults.baseURL = 'http://15.206.124.130:5000';
+axios.defaults.baseURL = 'http://15.206.100.155:5000';
 
 const initialState = {
   rootReducer: {

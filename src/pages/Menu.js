@@ -4,6 +4,7 @@ import logo from "../logo.jpg"
 import '../resources/menu.css';
 import Categories from "./Categories"
 import DefaultLayout from '../components/DefaultLayout';
+import MobileLayout from '../components/MobileLayout';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -68,6 +69,8 @@ function Menu() {
     // }
 
     return (
+
+
         <DefaultLayout>
             <main>
                 <section className='menu sections'>
@@ -81,6 +84,8 @@ function Menu() {
                 </section>
             </main>
         </DefaultLayout>
+
+
     )
 }
 
