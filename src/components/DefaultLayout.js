@@ -53,8 +53,14 @@ const DefaultLayout = (props) => {
                     mode="inline"
                     selectedKeys={[location.pathname]}>
 
-                    <Menu.Item key="/menu" icon={<HomeOutlined />}>
+                    {/* <Menu.Item key="/menu" icon={<HomeOutlined />}>
                         <Link to='/menu'>Menu</Link>
+                    </Menu.Item> */}
+                    <Menu.Item key="/firstmenu" icon={<HomeOutlined />}>
+                        <Link to='/firstmenu'>Menu</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/allocart" icon={<HomeOutlined />}>
+                        <Link to='/allocart'>A La Carte</Link>
                     </Menu.Item>
                     {role !== 'Customer' && (
                         <Menu.Item key="/customer" icon={<UserOutlined />}>

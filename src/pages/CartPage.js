@@ -12,19 +12,31 @@ import {
 import '../resources/cart.css';
 
 function CartPage() {
-    const { cartItems } = useSelector(state => state.rootReducer)
-    console.log(cartItems);
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const deleteFromCart = (index) => {
-        return {
+    const { cartItems } = useSelector(state => state.rootReducer);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleDeleteItem = (index) => {
+        dispatch({
             type: 'deleteFromCart',
             payload: index,
-        };
+        });
     };
-    const handleDeleteItem = (index) => {
-        dispatch(deleteFromCart(index));
+
+    const handleIncreaseQuantity = (index) => {
+        dispatch({
+            type: 'increaseQuantity',
+            payload: index,
+        });
     };
+
+    const handleDecreaseQuantity = (index) => {
+        dispatch({
+            type: 'decreaseQuantity',
+            payload: index,
+        });
+    };
+
     const columns = [
         {
             title: 'Name',
@@ -48,11 +60,17 @@ function CartPage() {
         {
             title: 'Qty',
             dataIndex: ['orderdetails', 'quantity'],
-            render: (quantity, record) => (
+            render: (quantity, record, index) => (
                 <div className="quantity-container">
-
+                    <MinusCircleOutlined
+                        onClick={() => handleDecreaseQuantity(index)}
+                        className="quantity-action"
+                    />
                     <span className="quantity">{quantity}</span>
-
+                    <PlusCircleOutlined
+                        onClick={() => handleIncreaseQuantity(index)}
+                        className="quantity-action"
+                    />
                 </div>
             ),
         },
@@ -63,57 +81,55 @@ function CartPage() {
         {
             title: 'Action',
             dataIndex: 'menu_id',
-            render: (id, record, index) =>
-
+            render: (id, record, index) => (
                 <DeleteOutlined onClick={() => handleDeleteItem(index)} />
-        }
+            ),
+        },
     ];
 
-    // useEffect(() => {
-    //     let temp = 0;
-    //     cartItems.forEach((item) => {
-    //         temp = temp + (item.Item_Price * item.quantity)
-    //     })
-
-
-
-    // }, [cartItems])
     const handlePlaceOrder = () => {
-        // Prepare the order details to send to the server
         const orderdetails = cartItems.map((item) => ({
-            key: item.orderdetails.id, // Assuming 'id' is a unique identifier for each item
+            key: item.orderdetails.id,
             menu_name: item.orderdetails.menu_name,
             items: item.orderdetails.items,
             unit_price: item.orderdetails.unit_price,
             quantity: item.orderdetails.quantity,
             total_price: item.orderdetails.total_price,
         }));
-        console.log(orderdetails);
-        navigate('/order', { state: orderdetails })
-        // Send the order details to the server
-        // axios
-        //   .post('/api/orders/place-order', { orders })
-        //   .then(response => {
-        //     // Handle the successful response from the server
-        //     message.success('Order placed successfully!');
-        //     // Clear the cart after placing the order
-        //     dispatch({ type: 'RESET_CART' });
-        //     // Navigate to the order success page or any other desired page
-        //     navigate('/order-success');
-        //   })
-        //   .catch(error => {
-        //     // Handle the error response from the server
-        //     console.log(error);
-        //     message.error('Failed to place the order. Please try again.');
-        //   });
+        navigate('/order', { state: orderdetails });
     };
+
     return (
         <DefaultLayout>
-            <h3>{cartItems && cartItems.length > 0 ? (<>    <Button type="primary" onClick={() => (window.location.href = '/menu')} className="back_btn">
-                Go to Menu
-            </Button></>) : (<> </>)}Cart  {cartItems && cartItems.length > 0 ? (<>    <Button type="primary" onClick={handlePlaceOrder} className="order_btn">
-                Checkout
-            </Button></>) : (<> </>)}</h3>
+            <h3>
+                {cartItems && cartItems.length > 0 ? (
+                    <>
+                        <Button
+                            type="primary"
+                            onClick={() => (window.location.href = '/menu')}
+                            className="back_btn"
+                        >
+                            Go to Menu
+                        </Button>
+                    </>
+                ) : (
+                    <></>
+                )}
+                Cart{' '}
+                {cartItems && cartItems.length > 0 ? (
+                    <>
+                        <Button
+                            type="primary"
+                            onClick={handlePlaceOrder}
+                            className="order_btn"
+                        >
+                            Checkout
+                        </Button>
+                    </>
+                ) : (
+                    <></>
+                )}
+            </h3>
             {cartItems && cartItems.length > 0 ? (
                 <>
                     <Table columns={columns} dataSource={cartItems} bordered pagination={false} />
@@ -126,4 +142,4 @@ function CartPage() {
     );
 }
 
-export default CartPage
+export default CartPage;

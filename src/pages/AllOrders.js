@@ -114,6 +114,11 @@ function AllOrders() {
 
     const columns = [
         {
+            title: 'Order No',
+            dataIndex: 'orderNo',
+            key: 'orderNo',
+        },
+        {
             title: 'Customer Name',
             dataIndex: 'name',
             key: 'name',
@@ -170,31 +175,28 @@ function AllOrders() {
             },
 
         },
+
         {
             title: 'Order Type',
             dataIndex: 'orderType',
             key: 'orderType',
         },
-        {
-            title: 'GST No',
-            dataIndex: 'gstno',
-            key: 'gstno',
-        },
+
         {
             title: 'Company',
             dataIndex: 'company',
             key: 'company',
         },
-        {
-            title: 'GSTIN No',
-            dataIndex: 'gstno',
-            key: 'gstno',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
+        // {
+        //     title: 'GSTIN No',
+        //     dataIndex: 'gstno',
+        //     key: 'gstno',
+        // },
+        // {
+        //     title: 'Address',
+        //     dataIndex: 'address',
+        //     key: 'address',
+        // },
         {
             title: 'Order Date',
             dataIndex: 'orderDateTime',

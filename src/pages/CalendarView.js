@@ -4,12 +4,13 @@ import { Calendar, Badge } from 'antd';
 import moment from 'moment';
 import '../resources/customer.css';
 import DefaultLayout from '../components/DefaultLayout';
+import { useNavigate } from 'react-router-dom';
 
 function CalendarView() {
     const [ordersData, setOrdersData] = useState([]);
     const appdata = JSON.parse(localStorage.getItem('app-user'));
     const role = appdata.role;
-
+    const navigate = useNavigate();
     useEffect(() => {
         // Fetch orders data
         axios.get('/api/order/get-all-order', appdata)
@@ -38,13 +39,17 @@ function CalendarView() {
             <ul className="events">
                 {eventsForDate.map((order) => (
                     <li key={order._id}>
-                        <Badge status="success" text={`${order.orderNo} - ${order.name}`} />
+                        <Badge status="success" text={`${order.orderNo} - ${order.name}`}
+                            onClick={() => handleEventClick(order._id)} />
                     </li>
                 ))}
             </ul>
         );
     }
+    const handleEventClick = (orderId) => {
 
+        navigate(`/editOrder/${orderId}`);
+    }
     return (
         <DefaultLayout>
             <div className="d-flex justify-content-between align-items-center test">

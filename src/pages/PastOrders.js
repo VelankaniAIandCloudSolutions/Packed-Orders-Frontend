@@ -109,6 +109,11 @@ function PastOrders() {
 
     const columns = [
         {
+            title: 'Order No',
+            dataIndex: 'orderNo',
+            key: 'orderNo',
+        },
+        {
             title: 'Customer Name',
             dataIndex: 'name',
             key: 'name',
@@ -171,25 +176,20 @@ function PastOrders() {
             key: 'orderType',
         },
         {
-            title: 'GST No',
-            dataIndex: 'gstno',
-            key: 'gstno',
-        },
-        {
             title: 'Company',
             dataIndex: 'company',
             key: 'company',
         },
-        {
-            title: 'GSTIN No',
-            dataIndex: 'gstno',
-            key: 'gstno',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
+        // {
+        //     title: 'GSTIN No',
+        //     dataIndex: 'gstno',
+        //     key: 'gstno',
+        // },
+        // {
+        //     title: 'Address',
+        //     dataIndex: 'address',
+        //     key: 'address',
+        // },
         {
             title: 'Order Date',
             dataIndex: 'orderDateTime',

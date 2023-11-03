@@ -218,3 +218,29 @@ p {
 
     /* Other adjustments for smaller screens */
 }
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    /* Items will be displayed vertically */
+    gap: 10px;
+    /* Add spacing between each item */
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    /* Align items vertically within each row */
+    gap: 10px;
+    /* Add spacing between the checkbox/details and quantity input */
+}
+
+.item-details {
+    flex-grow: 1;
+    /* Allow the details to grow and take available space */
+}
+
+.item-quantity {
+    width: 100px;
+    /* Adjust the width of the quantity input */
+}

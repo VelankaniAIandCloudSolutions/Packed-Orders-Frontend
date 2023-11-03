@@ -14,10 +14,16 @@ import DayWiseSaleRport from './pages/DayWiseSaleRport';
 import ItemSaleReport from './pages/ItemSaleReport';
 import CompanySaleReport from './pages/CompanySaleReport';
 import FirstMenu from './pages/FirstMenu';
+import SecondMenu from './pages/SecondMenu';
 import MobileTest from './pages/MobileTest';
 import CalendarView from './pages/CalendarView';
 import PastOrders from './pages/PastOrders';
 import OpenOrders from './pages/OpenOrders';
+import AllocartMenu from './pages/AllocartMenu';
+import AllocartSelection from './pages/AllocartSelection';
+import AllocartMenuView from './pages/AllocartMenuView';
+import testMenu from './pages/TestMenu';
+import TestMenu from './pages/TestMenu';
 function App() {
   return (
     <div className="App">
@@ -37,11 +43,18 @@ function App() {
           <Route path='/dayreport' element={<DayWiseSaleRport />} />
           <Route path='/itemreport' element={<ItemSaleReport />} />
           <Route path='/companyreport' element={<CompanySaleReport />} />
-          <Route path='/firstmenu' element={<FirstMenu />} />
+
           <Route path='/mobiletest' element={<MobileTest />} />
           <Route path='/calendarview' element={<CalendarView />} />
           <Route path='/pastorder' element={<PastOrders />} />
           <Route path='/openorder' element={<OpenOrders />} />
+          {/* <Route path='/allocart' element={<AllocartMenu />} /> */}
+          <Route path='/allo/:id' element={<AllocartSelection />} />
+          <Route path='/allocart' element={<AllocartMenuView />} />
+
+          <Route path='/firstmenu' element={<FirstMenu />} />
+          <Route path='/secondmenu/:category' element={<SecondMenu />} />
+          <Route path='/testmenu' element={<TestMenu />} />
         </Routes>
       </BrowserRouter>
     </div>
