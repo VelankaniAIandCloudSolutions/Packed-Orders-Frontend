@@ -1,30 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
-import { rootReducer } from './redux/rootReducer';
-import axios from 'axios';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
+import { rootReducer } from "./redux/rootReducer";
+import axios from "axios";
 
 const finalReducer = combineReducers({
-  rootReducer: rootReducer
+  rootReducer: rootReducer,
 });
 
-axios.defaults.baseURL = 'http://15.206.100.155:5000';
+axios.defaults.baseURL = "https://ordersdev.restronova.com";
 
 const initialState = {
   rootReducer: {
-    cartItems: localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
   },
 };
 
-const store = createStore(finalReducer, initialState)
+const store = createStore(finalReducer, initialState);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <App />
